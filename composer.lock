@@ -4,8 +4,50 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a34aabe9caecbe169ef57d4ba99bd5e9",
+    "content-hash": "6efab69d8577a72614a63ff5d995632c",
     "packages": [
+        {
+            "name": "bodunde/geocoder",
+            "version": "v1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/andela-badebiyi/Laravel-Google-Geocoder.git",
+                "reference": "e9f6dfac76d9092111492e2fae179a6596bde11e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/andela-badebiyi/Laravel-Google-Geocoder/zipball/e9f6dfac76d9092111492e2fae179a6596bde11e",
+                "reference": "e9f6dfac76d9092111492e2fae179a6596bde11e",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "*",
+                "illuminate/support": "~5",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Bodunde\\GoogleGeocoder\\": "src/",
+                    "Bodunde\\GoogleGeocoder\\Tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Adebiyi Bodunde",
+                    "email": "bodunde.adebiyi@andela.com"
+                }
+            ],
+            "description": "A laravel package that helps you with geocoding addresses and reverse geocoding coordinates using the google maps api. It also helps in calculating the distance between two locations using the Hervasine formula and the coordinates of the locations",
+            "time": "2016-10-09T18:19:34+00:00"
+        },
         {
             "name": "defuse/php-encryption",
             "version": "v2.1.0",
