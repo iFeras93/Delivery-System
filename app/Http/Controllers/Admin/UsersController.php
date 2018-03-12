@@ -139,6 +139,7 @@ class UsersController extends Controller
             return redirect()->back()->with(['message' => 'No User Founded']);
         }
 
+        //Delete User By ID
         $user->delete();
         return redirect()->back()->with(['message' => 'User Removed Successfully']);
     }
