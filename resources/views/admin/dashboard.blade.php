@@ -18,7 +18,7 @@
 
                         <br>
 
-                        <a href="#">Products List</a>
+                        <a href="{{ route('products.index') }}">Products List</a>
 
                         <br>
 

@@ -69,7 +69,6 @@
                                                           method="POST"
                                                           style="display: none;">
                                                         {{ csrf_field() }}
-                                                        <input type="hidden" value="{{ $user->id }}">
                                                     </form>
                                                 @endif
                                             @else

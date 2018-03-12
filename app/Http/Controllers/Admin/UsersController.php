@@ -20,7 +20,7 @@ class UsersController extends Controller
         //Get 10 Users in Page
         $users = User::paginate(10);
         //Page Title
-        $title = "Uses List";
+        $title = "Users List";
 
         return view('admin.users.index', compact(['title', 'users']));
     }
