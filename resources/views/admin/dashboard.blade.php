@@ -25,6 +25,11 @@
                         <a href="#">Orders List</a>
 
 
+                        <br>
+
+                        <a href="{{ route('settings.index') }}">Site Settings </a>
+
+
                     </div>
                 </div>
             </div>

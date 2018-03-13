@@ -39,17 +39,26 @@ class ProductsController extends Controller
 
     /**
      * @param ProductsRequest $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     *
      */
     public function store(ProductsRequest $request)
     {
         //
         if ($request->isMethod('post')) {
+            // Create New Product Instance
             $product = new Product();
+
+            // Product Attribute
             $product->title = $request->input('title');
             $product->description = $request->input('description');
             $product->price = $request->input('price');
             $product->user_id = Auth::user()->id;
+
+            // Save A New Product
             $product->save();
+
+            //Redirect To Product List
             return redirect(route('products.index'));
         }
     }
@@ -90,10 +99,16 @@ class ProductsController extends Controller
         //Get Product By ID
         $product = Product::find($id);
         if ($request->isMethod('post')) {
+
+            // Product Attribute
             $product->title = $request->input('title');
             $product->description = $request->input('description');
             $product->price = $request->input('price');
+
+            // Update Product Information
             $product->save();
+
+            //Redirect To Product List
             return redirect(route('products.index'));
         }
     }
@@ -113,7 +128,10 @@ class ProductsController extends Controller
         if (!$prodcut)
             return redirect()->back()->with(['message' => 'No Product Founded']);
 
+        // Delete Product
         $prodcut->delete();
+
+        // Return To Products List
         return redirect()->back();
     }
 }

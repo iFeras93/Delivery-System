@@ -72,6 +72,15 @@
                         </table>
                         <!--Table-->
 
+                        <div class="row">
+                            <div class="col-md-12">
+                                @if($products->count() > 0)
+                                    {{ $products->links() }}
+                                @endif
+                            </div>
+                        </div>
+
+
                         <a class="btn btn-success" href="{{ route('products.create') }}">
                             Create New Product
                         </a>

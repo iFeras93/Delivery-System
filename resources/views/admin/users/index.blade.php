@@ -60,7 +60,7 @@
                                                     </a>
                                                     <a href=""
                                                        onclick="event.preventDefault();
-                                                     document.getElementsByClassName('remove-user-form-{{$user->id}}')[0].submit();"
+                                                               document.getElementsByClassName('remove-user-form-{{$user->id}}')[0].submit();"
                                                        class="btn btn-danger btn-rounded btn-sm my-0">
                                                         Remove
                                                     </a>
@@ -84,6 +84,13 @@
                         </table>
                         <!--Table-->
 
+                        <div class="row">
+                            <div class="col-md-12">
+                                @if($users->count() > 0)
+                                    {{ $users->links() }}
+                                @endif
+                            </div>
+                        </div>
 
                         <a class="btn btn-info" href="{{ route('admin.dashboard') }}">
                             Back To Dashboard
