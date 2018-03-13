@@ -22,7 +22,7 @@
 
                         <br>
 
-                        <a href="#">Orders List</a>
+                        <a href="{{ route('orders.index') }}">Orders List</a>
 
 
                         <br>

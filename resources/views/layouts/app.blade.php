@@ -10,9 +10,10 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+    @yield('extracss')
 </head>
 <body>
 <div id="app">
@@ -75,5 +76,7 @@
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/jquery.min.js') }}" type="text/javascript"></script>
+@yield('extrajs')
 </body>
 </html>

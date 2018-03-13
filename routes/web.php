@@ -45,7 +45,7 @@ Route::group(['prefix' => 'admin'], function () {
 
 
     // Management Users Routes
-    Route::resource('orders', 'Admin\OrdersController', ['except' => ['create', 'edit', 'store', 'update', 'destroy']]);
+    Route::resource('orders', 'Admin\OrdersController', ['except' => ['edit', 'update', 'destroy']]);
     Route::post('orders/{id}/update', 'Admin\OrdersController@update')->name('orders.update');
     Route::post('orders/{id}/destroy', 'Admin\OrdersController@destroy')->name('orders.destroy');
 

@@ -151,6 +151,7 @@ return [
          * Package Service Providers...
          */
         Laravel\Passport\PassportServiceProvider::class,
+        Bodunde\GoogleGeocoder\GeocoderServiceProvider::class,
 
         /*
          * Application Service Providers...
