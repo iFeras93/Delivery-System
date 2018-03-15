@@ -11,6 +11,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Notification;
+use App\Models\Transaction as MyTransaction;
+
 /* Paypal Libraries*/
 
 use Mockery\Exception;
@@ -22,8 +24,11 @@ use PayPal\Api\Payer;
 use PayPal\Api\Payment;
 use PayPal\Api\PaymentExecution;
 use PayPal\Api\RedirectUrls;
+use PayPal\Api\Refund;
+use PayPal\Api\Sale;
 use PayPal\Api\Transaction;
 use PayPal\Auth\OAuthTokenCredential;
+use PayPal\Exception\PayPalConnectionException;
 use PayPal\Exception\PPConnectionException;
 use PayPal\Rest\ApiContext;
 
@@ -167,11 +172,21 @@ class PaymentsController extends Controller
         $result = $payment->execute($execution, $this->apiContext);
 
         if ($result->getState() == 'approved') { // payment made
+
+
             $order_id = session()->get('order_id');
             $user = Auth::user();
             $c_order = Order::find($order_id);
             $c_order->status = 1;
             $c_order->save();
+
+            $order_transaction = new MyTransaction();
+            $order_transaction->transaction_id = $payment->getId();
+            $order_transaction->order_id = $c_order->id;
+            $order_transaction->status = "paid";
+            $order_transaction->total_price = $c_order->total_price;
+            $order_transaction->save();
+
             try {
                 $user->notify(new OrderPaid($c_order));
             } catch (Exception $exception) {
@@ -186,5 +201,15 @@ class PaymentsController extends Controller
 
         session()->forget('order_id');
     }
+
+    public function postRefund(Request $request)
+    {
+        $current_order = Order::with(['transactions' => function ($q) {
+            $q->where('status', 'paid');
+        }])->find($request->input('order_id'));
+        $current_order->status = 3;
+        $current_order->save();
+    }
+
 
 }

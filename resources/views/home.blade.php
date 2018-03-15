@@ -16,7 +16,7 @@
 
                         <a href="{{ route('client.orders.index') }}">My Orders List</a>
                         <br>
-                        <a href="#">My Transactions List</a>
+                        <a href="#">My Transactions List</a> <small><span>(coming soon) ...</span></small>
 
 
 

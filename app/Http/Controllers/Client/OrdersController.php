@@ -129,7 +129,7 @@ class OrdersController extends Controller
         $order->save();
 
         // Return To Orders List
-        return redirect()->back()->with(['status' => 'remove orders successfully']);
+        return redirect()->back()->with(['status' => 'Canceled orders successfully']);
     }
 
 
@@ -171,4 +171,12 @@ class OrdersController extends Controller
         return $distanceTotalPrice;
     }
 
+
+    public function orderDelivered(Request $request)
+    {
+        $order = Order::find($request->input('order_id'));
+        $order->status = 2;
+        $order->save();
+        return redirect()->back()->with(['status' => 'Order Delivered.']);
+    }
 }

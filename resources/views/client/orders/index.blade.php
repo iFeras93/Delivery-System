@@ -112,7 +112,7 @@
                         <a class="btn btn-success" href="{{ route('client.orders.create') }}">
                             Create New Order
                         </a>
-                        <a class="btn btn-info" href="{{ route('admin.dashboard') }}">
+                        <a class="btn btn-info" href="{{ route('home') }}">
                             Back To Dashboard
                         </a>
                     </div>

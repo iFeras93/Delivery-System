@@ -106,21 +106,22 @@
                                         Order Delivered
                                     </a>
                                     <form class="delivered-order-form"
-                                          action="#"
+                                          action="{{ route('client.orders.delivered') }}"
                                           method="POST"
                                           style="display: none;">
                                         {{ csrf_field() }}
+                                        <input value="{{ $order->id }}" name="order_id" type="hidden">
                                     </form>
                                 </div>
                                 <div class="col-md-6">
                                     <a href=""
                                        onclick="event.preventDefault();
-                                       document.getElementsByClassName('refund-order-form')[0].submit();"
-                                       class="btn btn-danger btn-rounded btn-md btn-block my-0">
+                                               document.getElementsByClassName('remove-order-form-{{$order->id}}')[0].submit();"
+                                       class="btn btn-danger btn-rounded btn-md my-0 btn-block">
                                         Cancel And Refund
                                     </a>
-                                    <form class="refund-order-form"
-                                          action="#"
+                                    <form class="remove-order-form-{{$order->id}}"
+                                          action="{{ route('client.orders.destroy',$order->id) }}"
                                           method="POST"
                                           style="display: none;">
                                         {{ csrf_field() }}

@@ -55,7 +55,12 @@ Route::group(['prefix' => 'client', 'middleware' => ['isClient']], function () {
     // Management Users Routes
     Route::resource('orders', 'Client\OrdersController', ['as' => 'client'], ['except' => ['edit', 'update', 'destroy']]);
     Route::post('orders/{id}/destroy', 'Client\OrdersController@destroy')->name('client.orders.destroy');
+    Route::post('orders/delivered', 'Client\OrdersController@orderDelivered')->name('client.orders.delivered');
+
 
     Route::post('payment', 'Client\PaymentsController@postPayment')->name('client.payment');
     Route::get('payment/client', 'Client\PaymentsController@getPaymentStatus')->name('client.payment.status');
+
+    Route::post('payment/refund', 'Client\PaymentsController@postRefund')->name('client.payment.refund');
+
 });
