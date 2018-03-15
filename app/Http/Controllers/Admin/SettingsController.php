@@ -75,8 +75,7 @@ class SettingsController extends Controller
      */
     public function update(UpdateSettingsRequest $request)
     {
-        //
-
+        //return setting information
         $settings = Setting::find(1);
         if ($request->isMethod('post')) {
 
@@ -84,9 +83,9 @@ class SettingsController extends Controller
             $settings->main_email = $request->input('main_email');
             $settings->PAYPAL_SANDBOX_CLIENT_ID = $request->input('PAYPAL_SANDBOX_CLIENT_ID');
             $settings->PAYPAL_SANDBOX_SECRET = $request->input('PAYPAL_SANDBOX_SECRET');
-
             $settings->main_long = $request->input('main_long');
             $settings->main_lat = $request->input('main_lat');
+
             $settings->save();
             return redirect()->back()->with(['status' => 'Update Successfully']);
         }

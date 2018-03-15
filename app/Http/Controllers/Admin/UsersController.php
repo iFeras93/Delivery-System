@@ -54,8 +54,9 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        //get user by id
         $user = User::find($id);
+        //title for page
         $title = "Edit User Information :" . $user->name;
         return view('admin.users.edit', compact(['user', 'title']));
     }
@@ -80,8 +81,7 @@ class UsersController extends Controller
      */
     public function update(UpdateUserInfoRequest $request, $id)
     {
-        //
-
+        //check request is post
         if ($request->isMethod('post')) {
 
             // init user
@@ -89,7 +89,6 @@ class UsersController extends Controller
 
             if ($request->has('change_info')) {
                 //if change information form submitted
-
                 $user->name = $request->input('name');
                 $user->email = $request->input('email');
                 $user->type = $request->input('type');

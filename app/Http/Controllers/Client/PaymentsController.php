@@ -34,8 +34,7 @@ use PayPal\Rest\ApiContext;
 
 class PaymentsController extends Controller
 {
-    //
-
+    //init variable for paypal
     private $apiContext;
     private $mode;
     private $client_id;
@@ -57,10 +56,17 @@ class PaymentsController extends Controller
         // Set the Paypal API Context/Credentials
         $this->apiContext = new ApiContext(new OAuthTokenCredential($this->client_id, $this->secret));
         $this->apiContext->setConfig(config('paypal.settings'));
+
+        // get order using id
         $this->order = Order::find($request->input('order_id'));
     }
 
 
+    /**
+     * Store a details of payment with paypal.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function postPayment()
     {
 
@@ -73,14 +79,16 @@ class PaymentsController extends Controller
             ->setCancelUrl(route('client.payment.status'));
 
 
-        //
+        // list of items
         $listOfItem = [];
+        // fetching products from order and add to listOfItem
         foreach ($this->order->products as $product) {
             $item = new Item();
             $item->setName($product->title)
                 ->setCurrency('USD')
                 ->setQuantity(1)
                 ->setPrice($product->price);
+            //push every item in to array
             array_push($listOfItem, $item);
         }
 
@@ -88,6 +96,7 @@ class PaymentsController extends Controller
         $itemList = new ItemList();
         $itemList->setItems($listOfItem);
 
+        // for shipping
         $shipping_price = $this->order->distance_price;
 
         // Set payment details
@@ -117,6 +126,7 @@ class PaymentsController extends Controller
 
 
         try {
+            // create payment in paypal
             $payment->create($this->apiContext);
         } catch (\PayPal\Exception\PPConnectionException $ex) {
             if (Config::get('app.debug')) {
@@ -128,6 +138,7 @@ class PaymentsController extends Controller
             }
         }
 
+        // fetching payment response
         foreach ($payment->getLinks() as $link) {
             if ($link->getRel() == 'approval_url') {
                 $redirect_url = $link->getHref();
@@ -146,6 +157,9 @@ class PaymentsController extends Controller
             ->with('error', 'Unknown error occurred');
     }
 
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function getPaymentStatus()
     {
         // Get the payment ID before session clear
@@ -174,12 +188,14 @@ class PaymentsController extends Controller
         if ($result->getState() == 'approved') { // payment made
 
 
+            // Update Order Status
             $order_id = session()->get('order_id');
             $user = Auth::user();
             $c_order = Order::find($order_id);
             $c_order->status = 1;
             $c_order->save();
 
+            // create and save new transaction
             $order_transaction = new MyTransaction();
             $order_transaction->transaction_id = $payment->getId();
             $order_transaction->order_id = $c_order->id;
@@ -200,15 +216,6 @@ class PaymentsController extends Controller
             ->with(['status' => 'Payment failed']);
 
         session()->forget('order_id');
-    }
-
-    public function postRefund(Request $request)
-    {
-        $current_order = Order::with(['transactions' => function ($q) {
-            $q->where('status', 'paid');
-        }])->find($request->input('order_id'));
-        $current_order->status = 3;
-        $current_order->save();
     }
 
 

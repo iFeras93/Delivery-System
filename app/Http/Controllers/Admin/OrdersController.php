@@ -52,29 +52,31 @@ class OrdersController extends Controller
      */
     public function store(StoreOrderRequest $request)
     {
-        //
+        //check request is post
         if ($request->isMethod('post')) {
 
+            //lat and lon attribute
             $client_lat = $request->input('client_lat');
             $client_long = $request->input('client_long');
 
             //new Instance
             $order = new Order();
+            // generate code by generateOrderCode function
             $order->order_code = $this->generateOrderCode();
             $order->client_long = $client_long;
             $order->client_lat = $client_lat;
-
             $order->client_id = $request->input('user');
 
-
             $products = $request->input('products');
-
+            // give product_price column  price of all products in order
             $order->product_price = $this->calculateProductsPrice($products);
+            // give distance_price column a distance_price per km
             $order->distance_price = $this->calculateTotalPrice($client_lat, $client_long);
+            // calculate total price for order
             $order->total_price = $this->calculateTotalPrice($client_lat, $client_long) + $this->calculateProductsPrice($products);
 
             $order->save();
-
+            // save order and products many to many relation using sync function
             $order->products()->sync($products);
             return redirect(route('admin.orders.index'))->with(['status' => 'Add New Order Successfully']);
         }
@@ -139,13 +141,16 @@ class OrdersController extends Controller
         return redirect()->back()->with(['status' => 'remove orders successfully']);
     }
 
+    //generate number to add after ORDER_ name in order_code column
     private function generateOrderCode()
     {
+        //get random 4 number from 9 to 9999
         $randNumber = rand(9, 9999);
         $code = "ORDER_" . $randNumber;
         return $code;
     }
 
+    // calculate price for list of products
     private function calculateProductsPrice($products = [])
     {
         $productsTotalPrice = 0;
@@ -157,6 +162,7 @@ class OrdersController extends Controller
         return $productsTotalPrice;
     }
 
+    //calculate distance price per km
     private function calculateTotalPrice($client_lat, $client_lon)
     {
         //to get main lon & lat
