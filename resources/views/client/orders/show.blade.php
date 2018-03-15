@@ -81,20 +81,53 @@
                         </label>
 
                         <br> <br>
-                        <a href=""
-                           onclick="event.preventDefault();
-                                       document.getElementsByClassName('pay-order-form')[0].submit();"
-                           class="btn btn-danger btn-rounded btn-sm my-0">
-                            Pay With Paypal
-                        </a>
-                        <form class="pay-order-form"
-                              action="{{ route('client.payment') }}"
-                              method="POST"
-                              style="display: none;">
-                            {{ csrf_field() }}
-                            <input type="hidden" name="order_id" value="{{ $order->id }}">
-                        </form>
 
+                        @if($order->status == 0)
+                            <a href=""
+                               onclick="event.preventDefault();
+                                       document.getElementsByClassName('pay-order-form')[0].submit();"
+                               class="btn btn-info btn-rounded btn-md btn-block my-0">
+                                Pay With Paypal
+                            </a>
+                            <form class="pay-order-form"
+                                  action="{{ route('client.payment') }}"
+                                  method="POST"
+                                  style="display: none;">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="order_id" value="{{ $order->id }}">
+                            </form>
+                        @elseif($order->status == 1)
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <a href=""
+                                       onclick="event.preventDefault();
+                                       document.getElementsByClassName('delivered-order-form')[0].submit();"
+                                       class="btn btn-success btn-rounded btn-md btn-block my-0">
+                                        Order Delivered
+                                    </a>
+                                    <form class="delivered-order-form"
+                                          action="#"
+                                          method="POST"
+                                          style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </div>
+                                <div class="col-md-6">
+                                    <a href=""
+                                       onclick="event.preventDefault();
+                                       document.getElementsByClassName('refund-order-form')[0].submit();"
+                                       class="btn btn-danger btn-rounded btn-md btn-block my-0">
+                                        Cancel And Refund
+                                    </a>
+                                    <form class="refund-order-form"
+                                          action="#"
+                                          method="POST"
+                                          style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

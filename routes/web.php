@@ -22,7 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 /**
  * Admin Routs
  */
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['isAdmin']], function () {
 
     // Admin Dashboard Route
     Route::get('dashboard', 'AdminController@index')->name('admin.dashboard');
@@ -51,25 +51,11 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 
-Route::post('payment', array(
-    'as' => 'payment',
-    'uses' => 'PaypalController@postPayment',
-));
-
-// when the payment is done, this will redirect us to our page
-Route::get('payment/status', array(
-    'as' => 'payment.status',
-    'uses' => 'PaypalController@getPaymentStatus',
-));
-
-
-Route::group(['prefix' => 'client'], function () {
+Route::group(['prefix' => 'client', 'middleware' => ['isClient']], function () {
     // Management Users Routes
     Route::resource('orders', 'Client\OrdersController', ['as' => 'client'], ['except' => ['edit', 'update', 'destroy']]);
     Route::post('orders/{id}/destroy', 'Client\OrdersController@destroy')->name('client.orders.destroy');
 
     Route::post('payment', 'Client\PaymentsController@postPayment')->name('client.payment');
     Route::get('payment/client', 'Client\PaymentsController@getPaymentStatus')->name('client.payment.status');
-
-
 });
