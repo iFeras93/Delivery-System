@@ -23,6 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        session()->forget('order_id');
         return view('home');
     }
 }

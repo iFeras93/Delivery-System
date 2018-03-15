@@ -1,32 +1,27 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Client;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreOrderRequest;
+use App\Http\Requests\ClientStoreOrderRequest;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Setting;
-use App\User;
 use Bodunde\GoogleGeocoder\Geocoder;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class OrdersController extends Controller
 {
-
-
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        //title page
-        $title = "Orders List";
-        // get orders with users make it.
-        $orders = Order::with('user')->paginate(10);
-        return view('admin.orders.index', compact(['title', 'orders']));
+        //
+        $title = "My Orders List";
+        $orders = Order::where('client_id', Auth::user()->id)->paginate(10);
+        return view('client.orders.index', compact(['title', 'orders']));
     }
 
     /**
@@ -38,21 +33,19 @@ class OrdersController extends Controller
     {
         //page title
         $title = "Create New Order";
-        //get client users list
-        $users = User::where('type', 'client')->get();
         //get products list
         $products = Product::get();
 
 
-        return view('admin.orders.create', compact(['title', 'users', 'products']));
+        return view('client.orders.create', compact(['title', 'users', 'products']));
     }
 
     /**
-     * @param StoreOrderRequest $request
+     * @param ClientStoreOrderRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StoreOrderRequest $request)
+    public function store(ClientStoreOrderRequest $request)
     {
-        //
         if ($request->isMethod('post')) {
 
             $client_lat = $request->input('client_lat');
@@ -64,8 +57,7 @@ class OrdersController extends Controller
             $order->client_long = $client_long;
             $order->client_lat = $client_lat;
 
-            $order->client_id = $request->input('user');
-
+            $order->client_id = Auth::user()->id;
 
             $products = $request->input('products');
 
@@ -76,7 +68,7 @@ class OrdersController extends Controller
             $order->save();
 
             $order->products()->sync($products);
-            return redirect(route('admin.orders.index'))->with(['status' => 'Add New Order Successfully']);
+            return redirect(route('client.orders.index'))->with(['status' => 'Add New Order Successfully']);
         }
     }
 
@@ -88,10 +80,10 @@ class OrdersController extends Controller
      */
     public function show($id)
     {
-        //
         $order = Order::find($id);
         $title = "Show Order Details: #" . $order->order_code;
-        return view('admin.orders.show', compact(['title', 'order']));
+        session()->put('order_id', $order->id);
+        return view('client.orders.show', compact(['title', 'order']));
     }
 
     /**
@@ -114,7 +106,7 @@ class OrdersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**
@@ -135,9 +127,11 @@ class OrdersController extends Controller
         // canceled Order
         $order->status = 3;
         $order->save();
+
         // Return To Orders List
         return redirect()->back()->with(['status' => 'remove orders successfully']);
     }
+
 
     private function generateOrderCode()
     {
@@ -176,4 +170,5 @@ class OrdersController extends Controller
 
         return $distanceTotalPrice;
     }
+
 }

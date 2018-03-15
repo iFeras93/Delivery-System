@@ -19,7 +19,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
 /**
  * Admin Routs
  */
@@ -45,9 +44,32 @@ Route::group(['prefix' => 'admin'], function () {
 
 
     // Management Users Routes
-    Route::resource('orders', 'Admin\OrdersController', ['except' => ['edit', 'update', 'destroy']]);
-    Route::post('orders/{id}/update', 'Admin\OrdersController@update')->name('orders.update');
-    Route::post('orders/{id}/destroy', 'Admin\OrdersController@destroy')->name('orders.destroy');
+    Route::resource('orders', 'Admin\OrdersController', ['as' => 'admin'], ['except' => ['edit', 'update', 'destroy']]);
+    Route::post('orders/{id}/destroy', 'Admin\OrdersController@destroy')->name('admin.orders.destroy');
+
+
+});
+
+
+Route::post('payment', array(
+    'as' => 'payment',
+    'uses' => 'PaypalController@postPayment',
+));
+
+// when the payment is done, this will redirect us to our page
+Route::get('payment/status', array(
+    'as' => 'payment.status',
+    'uses' => 'PaypalController@getPaymentStatus',
+));
+
+
+Route::group(['prefix' => 'client'], function () {
+    // Management Users Routes
+    Route::resource('orders', 'Client\OrdersController', ['as' => 'client'], ['except' => ['edit', 'update', 'destroy']]);
+    Route::post('orders/{id}/destroy', 'Client\OrdersController@destroy')->name('client.orders.destroy');
+
+    Route::post('payment', 'Client\PaymentsController@postPayment')->name('client.payment');
+    Route::get('payment/client', 'Client\PaymentsController@getPaymentStatus')->name('client.payment.status');
 
 
 });

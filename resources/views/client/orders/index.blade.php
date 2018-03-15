@@ -23,7 +23,6 @@
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>User</th>
                                 <th>Products Price</th>
                                 <th>Distance (per km)</th>
                                 <th>Total Price</th>
@@ -40,7 +39,6 @@
                                 @foreach($orders as $order)
                                     <tr>
                                         <th scope="row">{{ $loop->iteration }}</th>
-                                        <td>{{ $order->user->name }}</td>
                                         <td>${{ $order->product_price }}</td>
                                         <td>
                                             @php
@@ -77,7 +75,7 @@
                                             @if($order->status ==2 || $order->status == 3)
                                                 nothing to do
                                             @else
-                                                <a href="{{ route('admin.orders.show', $order->id) }}"
+                                                <a href="{{ route('client.orders.show', $order->id) }}"
                                                    class="btn btn-primary btn-rounded btn-sm my-0">
                                                     Show Order
                                                 </a>
@@ -88,7 +86,7 @@
                                                     Cancel
                                                 </a>
                                                 <form class="remove-order-form-{{$order->id}}"
-                                                      action="{{ route('admin.orders.destroy',$order->id) }}"
+                                                      action="{{ route('client.orders.destroy',$order->id) }}"
                                                       method="POST"
                                                       style="display: none;">
                                                     {{ csrf_field() }}
@@ -111,7 +109,7 @@
                                 @endif
                             </div>
                         </div>
-                        <a class="btn btn-success" href="{{ route('admin.orders.create') }}">
+                        <a class="btn btn-success" href="{{ route('client.orders.create') }}">
                             Create New Order
                         </a>
                         <a class="btn btn-info" href="{{ route('admin.dashboard') }}">

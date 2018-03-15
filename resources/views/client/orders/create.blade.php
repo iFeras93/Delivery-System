@@ -52,28 +52,9 @@
                         @endif
 
 
-                        <form method="POST" action="{{ route('admin.orders.store') }}">
+                        <form method="POST" action="{{ route('client.orders.store') }}">
                             {{ csrf_field() }}
 
-                            <div class="form-group row">
-                                <label for="user"
-                                       class="col-md-4 col-form-label text-md-right">User</label>
-                                <div class="col-md-6">
-                                    <select id="js-example-basic-multiple2" class="form-control" name="user"
-                                            required>
-                                        @if($users->count() > 0)
-                                            @foreach($users as $user)
-                                                <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                            @endforeach
-                                        @endif
-                                    </select>
-                                    @if ($errors->has('user'))
-                                        <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('user') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
 
                             <div class="form-group row">
                                 <label for="products"

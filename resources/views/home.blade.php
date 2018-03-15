@@ -14,7 +14,12 @@
                             </div>
                         @endif
 
-                        You are logged in!
+                        <a href="{{ route('client.orders.index') }}">My Orders List</a>
+                        <br>
+                        <a href="#">My Transactions List</a>
+
+
+
                     </div>
                 </div>
             </div>
