@@ -50,8 +50,9 @@ class PaymentsController extends Controller
             $this->client_id = config('paypal.live_client_id');
             $this->secret = config('paypal.live_secret');
         } else {
-            $this->client_id = config('paypal.sandbox_client_id');
-            $this->secret = config('paypal.sandbox_secret');
+            $setting = Setting::find(1);
+            $this->client_id = $setting->PAYPAL_SANDBOX_CLIENT_ID;
+            $this->secret = $setting->PAYPAL_SANDBOX_SECRET;
         }
         // Set the Paypal API Context/Credentials
         $this->apiContext = new ApiContext(new OAuthTokenCredential($this->client_id, $this->secret));
