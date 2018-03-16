@@ -1,0 +1,174 @@
+{
+	"id": "3dfc973f-2b43-b7ac-3ef3-1f0ddd85601e",
+	"name": "Unit One - Delivery System",
+	"description": "",
+	"order": [
+		"341214f1-7e0e-927c-28fc-c0c2f4388f9f",
+		"f79c0459-3cc0-379b-901e-fc4d7b18b987",
+		"54203931-e7ab-84f6-82de-9b4c52c34f40",
+		"945c5cd4-221f-8188-456b-4d1a745385b0"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1521214740575,
+	"owner": "813592",
+	"public": false,
+	"requests": [
+		{
+			"id": "341214f1-7e0e-927c-28fc-c0c2f4388f9f",
+			"headers": "Content-Type: application/json\nAccept: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Accept",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost/test/DeliverySystemTask/public/api/v1/login",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1521215716356,
+			"name": "Login",
+			"description": "Body:\nemail\npassword",
+			"collectionId": "3dfc973f-2b43-b7ac-3ef3-1f0ddd85601e",
+			"responses": [],
+			"rawModeData": "{\n\t\"email\":\"aser@gmail.com\",\n\t\"password\":\"123456\"\n}"
+		},
+		{
+			"id": "54203931-e7ab-84f6-82de-9b4c52c34f40",
+			"headers": "Accept: application/json\nContent-Type: application/json\nAuthorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjkzNmIxODU1Zjk0MzU5NDgwYjY5OWJkNjE1ZTdhNzdlMDA2NjgzZTQzYTIyZWNmNzkzMDYxM2M1MDk0Y2Y0M2VhYWRjMzkwMzBiZDdkZmM0In0.eyJhdWQiOiIxIiwianRpIjoiOTM2YjE4NTVmOTQzNTk0ODBiNjk5YmQ2MTVlN2E3N2UwMDY2ODNlNDNhMjJlY2Y3OTMwNjEzYzUwOTRjZjQzZWFhZGMzOTAzMGJkN2RmYzQiLCJpYXQiOjE1MjEyMTU2NjQsIm5iZiI6MTUyMTIxNTY2NCwiZXhwIjoxNTUyNzUxNjY0LCJzdWIiOiI4Iiwic2NvcGVzIjpbXX0.bbGW4FIY5vg0Rbau0OUamvqx4VwWKWGHcvyFQyuBIsCJ-N-ds8SaQrY6UJQVYACJgGsTsh1oaCSLTjKLqDCzY3TtsE_k1AgIo3GlNXZ-kvrCVr9vapvawsuNXmV8DUOhx1tKd3OOaho9mY0Z8mdIAiLJVcp2ph--khDvEp7LcAo4MkqoBbP6aNfNtcpW_3hKY2tu52pUpH0wzBd-RswHih7hDMlW6Ef7loRmOwiYqeyHVVfWUoP1ZxTMFPlcyLPJUT6BjNVs-4ckf9vw_arAkWRg4G51uCkRJCmVBgpxz5pWrt0q_Y2jcSIAH5bXXTXVy6JWKcAvPMBiroNoQfJY60sxKzI5M0Ko4JscKPG5YHMVeoY_nBaRnktaJgRt4sYAb6GjMJhvwbh0THkC8Xb1cIGbjVRYGq_S-T_uAqhCMCLbMoFfAXfZReQ9LhpqBsHXBdcqslkU6DrZO085f1C1HR9QWTpaJrqOQ3uhzMSKLZZcs1ThWPjjKX6tdai9d5fdKjFSSxiMH9ucLOrOUcc3wo3a1P2YMCGNrCowbPRl0mG5GzEBhEywK95Z-tzHUgIf8eKgcZQnZmyUZN4pcTrhkgyYdu0xcUVPFcYRiKaS6P5Upa8SnXszoOmprsZFN4ZuFTRZ6pa_T1NywJ_hqWhMD_eFRIyJbPbACQeNsHETK88\n",
+			"headerData": [
+				{
+					"key": "Accept",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjkzNmIxODU1Zjk0MzU5NDgwYjY5OWJkNjE1ZTdhNzdlMDA2NjgzZTQzYTIyZWNmNzkzMDYxM2M1MDk0Y2Y0M2VhYWRjMzkwMzBiZDdkZmM0In0.eyJhdWQiOiIxIiwianRpIjoiOTM2YjE4NTVmOTQzNTk0ODBiNjk5YmQ2MTVlN2E3N2UwMDY2ODNlNDNhMjJlY2Y3OTMwNjEzYzUwOTRjZjQzZWFhZGMzOTAzMGJkN2RmYzQiLCJpYXQiOjE1MjEyMTU2NjQsIm5iZiI6MTUyMTIxNTY2NCwiZXhwIjoxNTUyNzUxNjY0LCJzdWIiOiI4Iiwic2NvcGVzIjpbXX0.bbGW4FIY5vg0Rbau0OUamvqx4VwWKWGHcvyFQyuBIsCJ-N-ds8SaQrY6UJQVYACJgGsTsh1oaCSLTjKLqDCzY3TtsE_k1AgIo3GlNXZ-kvrCVr9vapvawsuNXmV8DUOhx1tKd3OOaho9mY0Z8mdIAiLJVcp2ph--khDvEp7LcAo4MkqoBbP6aNfNtcpW_3hKY2tu52pUpH0wzBd-RswHih7hDMlW6Ef7loRmOwiYqeyHVVfWUoP1ZxTMFPlcyLPJUT6BjNVs-4ckf9vw_arAkWRg4G51uCkRJCmVBgpxz5pWrt0q_Y2jcSIAH5bXXTXVy6JWKcAvPMBiroNoQfJY60sxKzI5M0Ko4JscKPG5YHMVeoY_nBaRnktaJgRt4sYAb6GjMJhvwbh0THkC8Xb1cIGbjVRYGq_S-T_uAqhCMCLbMoFfAXfZReQ9LhpqBsHXBdcqslkU6DrZO085f1C1HR9QWTpaJrqOQ3uhzMSKLZZcs1ThWPjjKX6tdai9d5fdKjFSSxiMH9ucLOrOUcc3wo3a1P2YMCGNrCowbPRl0mG5GzEBhEywK95Z-tzHUgIf8eKgcZQnZmyUZN4pcTrhkgyYdu0xcUVPFcYRiKaS6P5Upa8SnXszoOmprsZFN4ZuFTRZ6pa_T1NywJ_hqWhMD_eFRIyJbPbACQeNsHETK88",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost/test/DeliverySystemTask/public/api/v1/orders",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1521215803358,
+			"name": "Get Orders List",
+			"description": "",
+			"collectionId": "3dfc973f-2b43-b7ac-3ef3-1f0ddd85601e",
+			"responses": []
+		},
+		{
+			"id": "945c5cd4-221f-8188-456b-4d1a745385b0",
+			"headers": "Accept: application/json\nContent-Type: application/json\nAuthorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjkzNmIxODU1Zjk0MzU5NDgwYjY5OWJkNjE1ZTdhNzdlMDA2NjgzZTQzYTIyZWNmNzkzMDYxM2M1MDk0Y2Y0M2VhYWRjMzkwMzBiZDdkZmM0In0.eyJhdWQiOiIxIiwianRpIjoiOTM2YjE4NTVmOTQzNTk0ODBiNjk5YmQ2MTVlN2E3N2UwMDY2ODNlNDNhMjJlY2Y3OTMwNjEzYzUwOTRjZjQzZWFhZGMzOTAzMGJkN2RmYzQiLCJpYXQiOjE1MjEyMTU2NjQsIm5iZiI6MTUyMTIxNTY2NCwiZXhwIjoxNTUyNzUxNjY0LCJzdWIiOiI4Iiwic2NvcGVzIjpbXX0.bbGW4FIY5vg0Rbau0OUamvqx4VwWKWGHcvyFQyuBIsCJ-N-ds8SaQrY6UJQVYACJgGsTsh1oaCSLTjKLqDCzY3TtsE_k1AgIo3GlNXZ-kvrCVr9vapvawsuNXmV8DUOhx1tKd3OOaho9mY0Z8mdIAiLJVcp2ph--khDvEp7LcAo4MkqoBbP6aNfNtcpW_3hKY2tu52pUpH0wzBd-RswHih7hDMlW6Ef7loRmOwiYqeyHVVfWUoP1ZxTMFPlcyLPJUT6BjNVs-4ckf9vw_arAkWRg4G51uCkRJCmVBgpxz5pWrt0q_Y2jcSIAH5bXXTXVy6JWKcAvPMBiroNoQfJY60sxKzI5M0Ko4JscKPG5YHMVeoY_nBaRnktaJgRt4sYAb6GjMJhvwbh0THkC8Xb1cIGbjVRYGq_S-T_uAqhCMCLbMoFfAXfZReQ9LhpqBsHXBdcqslkU6DrZO085f1C1HR9QWTpaJrqOQ3uhzMSKLZZcs1ThWPjjKX6tdai9d5fdKjFSSxiMH9ucLOrOUcc3wo3a1P2YMCGNrCowbPRl0mG5GzEBhEywK95Z-tzHUgIf8eKgcZQnZmyUZN4pcTrhkgyYdu0xcUVPFcYRiKaS6P5Upa8SnXszoOmprsZFN4ZuFTRZ6pa_T1NywJ_hqWhMD_eFRIyJbPbACQeNsHETK88\n",
+			"headerData": [
+				{
+					"key": "Accept",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjkzNmIxODU1Zjk0MzU5NDgwYjY5OWJkNjE1ZTdhNzdlMDA2NjgzZTQzYTIyZWNmNzkzMDYxM2M1MDk0Y2Y0M2VhYWRjMzkwMzBiZDdkZmM0In0.eyJhdWQiOiIxIiwianRpIjoiOTM2YjE4NTVmOTQzNTk0ODBiNjk5YmQ2MTVlN2E3N2UwMDY2ODNlNDNhMjJlY2Y3OTMwNjEzYzUwOTRjZjQzZWFhZGMzOTAzMGJkN2RmYzQiLCJpYXQiOjE1MjEyMTU2NjQsIm5iZiI6MTUyMTIxNTY2NCwiZXhwIjoxNTUyNzUxNjY0LCJzdWIiOiI4Iiwic2NvcGVzIjpbXX0.bbGW4FIY5vg0Rbau0OUamvqx4VwWKWGHcvyFQyuBIsCJ-N-ds8SaQrY6UJQVYACJgGsTsh1oaCSLTjKLqDCzY3TtsE_k1AgIo3GlNXZ-kvrCVr9vapvawsuNXmV8DUOhx1tKd3OOaho9mY0Z8mdIAiLJVcp2ph--khDvEp7LcAo4MkqoBbP6aNfNtcpW_3hKY2tu52pUpH0wzBd-RswHih7hDMlW6Ef7loRmOwiYqeyHVVfWUoP1ZxTMFPlcyLPJUT6BjNVs-4ckf9vw_arAkWRg4G51uCkRJCmVBgpxz5pWrt0q_Y2jcSIAH5bXXTXVy6JWKcAvPMBiroNoQfJY60sxKzI5M0Ko4JscKPG5YHMVeoY_nBaRnktaJgRt4sYAb6GjMJhvwbh0THkC8Xb1cIGbjVRYGq_S-T_uAqhCMCLbMoFfAXfZReQ9LhpqBsHXBdcqslkU6DrZO085f1C1HR9QWTpaJrqOQ3uhzMSKLZZcs1ThWPjjKX6tdai9d5fdKjFSSxiMH9ucLOrOUcc3wo3a1P2YMCGNrCowbPRl0mG5GzEBhEywK95Z-tzHUgIf8eKgcZQnZmyUZN4pcTrhkgyYdu0xcUVPFcYRiKaS6P5Upa8SnXszoOmprsZFN4ZuFTRZ6pa_T1NywJ_hqWhMD_eFRIyJbPbACQeNsHETK88",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost/test/DeliverySystemTask/public/api/v1/orders/15",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "3dfc973f-2b43-b7ac-3ef3-1f0ddd85601e",
+			"data": null,
+			"dataMode": "params",
+			"name": "Get Order Details",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1521216350910,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "f79c0459-3cc0-379b-901e-fc4d7b18b987",
+			"headers": "Content-Type: application/json\nAccept: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Accept",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost/test/DeliverySystemTask/public/api/v1/register",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "3dfc973f-2b43-b7ac-3ef3-1f0ddd85601e",
+			"data": [],
+			"dataMode": "raw",
+			"name": "Register",
+			"description": "Body:\nname,email,password,password_confirmation",
+			"descriptionFormat": "html",
+			"time": 1521214929047,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n\t\"name\":\"Qusay\",\n\t\"email\":\"q@qq.com\",\n\t\"password\":\"123456\",\n\t\"password_confirmation\":\"123456\"\n}"
+		}
+	]
+}

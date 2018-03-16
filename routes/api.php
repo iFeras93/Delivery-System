@@ -22,5 +22,6 @@ Route::group(['prefix' => 'v1'], function () {
     Route::post('login', 'Api\V1\AuthorizationController@login');
     Route::post('register', 'Api\V1\AuthorizationController@register');
 
+    // this protecting using auth passport
     Route::resource('orders', 'Api\V1\OrdersController')->middleware('auth:api');
 });
