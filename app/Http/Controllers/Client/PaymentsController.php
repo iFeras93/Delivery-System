@@ -203,6 +203,7 @@ class PaymentsController extends Controller
             $order_transaction->total_price = $c_order->total_price;
             $order_transaction->save();
 
+            //try to send mail notification to user pay with paypal
             try {
                 $user->notify(new OrderPaid($c_order));
             } catch (Exception $exception) {
