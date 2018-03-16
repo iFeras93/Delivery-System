@@ -38,6 +38,11 @@ email: admin@admin.com
 password: 123456
 ```
 
+## Mail Account
+
+I use mailtrap.io account but your username and passsword
+
+
 
 ## Built With
 
